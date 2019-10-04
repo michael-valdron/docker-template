@@ -1,12 +1,20 @@
-FROM ubuntu:18.04
+FROM ubuntu:19.04
 
 ARG arg
 
 # Install System Packages
-RUN apt update && apt install htop git emacs tmux make \
-  build-essential python3 python3-pip python3-virtualenv \
-  python3-venv curl man wget less default-jre default-jdk \
-  rlwrap screenfetch yadm openssh-server -y
+RUN apt-get update && apt-get install sudo htop git emacs \
+  tmux make build-essential python3 python3-pip \
+  python3-virtualenv python3-venv man wget less default-jre \
+  default-jdk rlwrap screenfetch yadm openssh-server \
+  openssh-client ack iputils-ping -y --no-install-recommends
+
+RUN apt-get install -y --no-install-recommends \
+  apt-transport-https \
+  ca-certificates \
+  curl \
+  gnupg-agent \
+  software-properties-common
 
 # Add user
 RUN adduser --disabled-password --gecos '' mvaldron && \
@@ -40,4 +48,4 @@ RUN curl -O https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/l
   chmod +x /usr/local/bin/lein
 
 # "CMD" runs an initial command on container startup
-CMD su - mvaldron -c bash
+CMD service ssh start && su - mvaldron -c bash
