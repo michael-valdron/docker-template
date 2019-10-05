@@ -1,4 +1,4 @@
-FROM ubuntu:19.04
+FROM ubuntu:latest
 
 ARG arg
 
@@ -13,6 +13,7 @@ RUN apt-get install -y --no-install-recommends \
   apt-transport-https \
   ca-certificates \
   curl \
+  gnupg \
   gnupg-agent \
   software-properties-common
 
@@ -21,10 +22,10 @@ RUN adduser --disabled-password --gecos '' mvaldron && \
   adduser mvaldron sudo
 
 # Spacemacs
-RUN git clone https://github.com/syl20bnr/spacemacs.git \
-  /home/mvaldron/.emacs.d/
+#RUN git clone https://github.com/syl20bnr/spacemacs.git \
+#  /home/mvaldron/.emacs.d/
 
-RUN chown -R mvaldron:mvaldron /home/mvaldron/.emacs.d
+#RUN chown -R mvaldron:mvaldron /home/mvaldron/.emacs.d
 
 # Anaconda Install
 #RUN if [ "${arg}" != "arm" ] ; then curl -O \
