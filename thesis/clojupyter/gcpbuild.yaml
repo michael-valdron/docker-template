@@ -1,8 +1,0 @@
-# Author: Michael Valdron
-steps:
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['build',
-  '-t', 'gcr.io/$PROJECT_ID/mvaldron/thesis/clojupyter',
-  '--build-arg', 'username=${_USERNAME}', '.' ]
-images:
-- 'gcr.io/$PROJECT_ID/mvaldron/thesis/clojupyter'
