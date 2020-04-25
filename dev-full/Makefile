@@ -1,7 +1,7 @@
 # Author: Michael Valdron
 
 build-local-dev:
-	docker build --rm -t mvaldron/dev .
+	docker build --rm -t mvaldron/dev-full .
 
 build-gcp-dev:
 	if [ -z "$(PROJECT_ID)" ]; then \
